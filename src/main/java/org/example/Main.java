@@ -1,17 +1,61 @@
 package org.example;
 
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
+import io.javalin.Javalin;
+import io.javalin.rendering.template.JavalinThymeleaf;
+
+import java.util.List;
+import java.util.Map;
+
 public class Main {
     public static void main(String[] args) {
-        //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
-        // to see how IntelliJ IDEA suggests fixing it.
-        System.out.printf("Hello and welcome!");
 
-        for (int i = 1; i <= 5; i++) {
-            //TIP Press <shortcut actionId="Debug"/> to start debugging your code. We have set one <icon src="AllIcons.Debugger.Db_set_breakpoint"/> breakpoint
-            // for you, but you can always add more by pressing <shortcut actionId="ToggleLineBreakpoint"/>.
-            System.out.println("i = " + i);
-        }
+        // Javalin App initialisieren mit Thymeleaf-Renderer
+        Javalin app = Javalin.create(
+                config -> config.fileRenderer(new JavalinThymeleaf())
+        ).start(8080);
+
+        // Route für Main-Seite
+        app.get("/main", ctx -> {
+            ctx.render("Main.html");
+        });
+
+        // Route für Description-Seite
+        app.get("/description", ctx -> {
+            ctx.render("Description.html", Map.of(
+                    "title", "Timestretch - Beschreibung",
+                    "description", "Timestretch ist ein System zur Aufgaben- und Zeiterfassung."
+            ));
+        });
+
+        // Route für AddTask-Seite
+        app.get("/addtask", ctx -> {
+            ctx.render("AddTask.html");
+        });
+
+        // Route für DeleteTask-Seite
+        app.get("/deletetask", ctx -> {
+            // Beispiel: Dummy-Daten zur Darstellung
+            List<String> tasks = List.of("Task 1", "Task 2", "Task 3");
+            ctx.render("DeleteTask.html", Map.of(
+                    "tasks", tasks
+            ));
+        });
+
+        // Beispiel einer Route mit Query-Parametern
+        app.get("/greet", ctx -> {
+            String name = ctx.queryParam("name");
+            if (name == null || name.isEmpty()) {
+                ctx.status(400).result("Missing 'name' query parameter");
+            } else {
+                ctx.result("Hello " + name);
+            }
+        });
+
+        // Beispiel einer POST-Anfrage (Formularverarbeitung)
+        app.post("/submit-task", ctx -> {
+            String taskName = ctx.formParam("taskName");
+            String description = ctx.formParam("description");
+            ctx.result("Task hinzugefügt: " + taskName + " mit Beschreibung: " + description);
+        });
     }
 }
