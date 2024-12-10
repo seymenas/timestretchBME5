@@ -16,7 +16,7 @@ public class Main {
         Javalin app = Javalin.create(config -> {
             config.fileRenderer(new JavalinThymeleaf());
             //config.addStaticFiles("/public");  // Wenn du statische Dateien hast (CSS, JS)
-        }).start(4711);
+        }).start(8080);
 
         TaskController taskController = new TaskController();
         taskController.setupRoutes(app);
