@@ -4,7 +4,7 @@
         <class>model.Task</class>
         <properties>
             <!-- PostgreSQL-Datenbankverbindung -->
-            <property name="jakarta.persistence.jdbc.url" value="jdbc:postgresql://pgdb.wannaco.de:5432/g3"/>
+            <property name="jakarta.persistence.jdbc.url" value="jdbc:postgresql://pgdb.wannaco.de:4711/g3"/>
             <property name="jakarta.persistence.jdbc.user" value="g3"/>
             <property name="jakarta.persistence.jdbc.password" value="yYOhGb87Zi2fmt3ziuY8"/>
             <property name="jakarta.persistence.jdbc.driver" value="org.postgresql.Driver"/>
