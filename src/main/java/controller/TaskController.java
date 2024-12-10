@@ -13,7 +13,7 @@ public class TaskController {
         // Anzeige der Aufgabenliste
         app.get("/tasks", ctx -> {
             ctx.attribute("tasks", taskRepository.findAll());
-            ctx.render("/tasks.html");  // Dies ist das Thymeleaf Template
+            ctx.render("/Main.html");  // Dies ist das Thymeleaf Template
         });
 
         // Hinzufügen einer neuen Aufgabe
