@@ -1,7 +1,9 @@
 package init;
 
+import controller.Controller;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
+import model.Repository;
 
 public class AppFactory {
     private static Repository _REPO;
@@ -21,7 +23,7 @@ public class AppFactory {
     }
     static Controller createController(Repository repo){
         if (_CONTROLLER == null) {
-            _CONTROLLER = new Controller(repo);
+            //_CONTROLLER = new Controller(repo);
         }
         return _CONTROLLER;
     }
