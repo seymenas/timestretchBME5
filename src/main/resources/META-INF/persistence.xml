@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence xmlns="https://jakarta.ee/xml/ns/persistence" version="3.0">
+    <persistence-unit name="timestretch-unit">
+        <class>model.Task</class>
+        <properties>
+            <!-- PostgreSQL-Datenbankverbindung -->
+            <property name="jakarta.persistence.jdbc.url" value="jdbc:postgresql://pgdb.wannaco.de:5432/g3"/>
+            <property name="jakarta.persistence.jdbc.user" value="g3"/>
+            <property name="jakarta.persistence.jdbc.password" value="yYOhGb87Zi2fmt3ziuY8"/>
+            <property name="jakarta.persistence.jdbc.driver" value="org.postgresql.Driver"/>
+
+            <!-- Hibernate Dialekt für PostgreSQL -->
+            <property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect"/>
+
+            <!-- Schema-Management (z. B. für automatische Erstellung von Tabellen) -->
+            <property name="hibernate.hbm2ddl.auto" value="update"/>
+        </properties>
+    </persistence-unit>
+</persistence>
